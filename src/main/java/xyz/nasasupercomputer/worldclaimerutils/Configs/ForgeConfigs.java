@@ -23,7 +23,7 @@ public class ForgeConfigs
     
 	public static boolean instantlyKillPlayer;
     private static final ForgeConfigSpec.BooleanValue KILL_PLAYER = BUILDER
-            .comment("Instantly kill a player that tries to interact with another mod (Joke Option)")
+            .comment("Instantly kill a player that tries to interact with a banned mod (Joke Option)")
             .define("instantlyKillPlayer", false);
 
     public static List<? extends String> modBans;
