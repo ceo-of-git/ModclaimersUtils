@@ -26,6 +26,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import xyz.nasasupercomputer.worldclaimerutils.Blocks.BlockRegistry;
+import xyz.nasasupercomputer.worldclaimerutils.Configs.ForgeConfigs;
 import xyz.nasasupercomputer.worldclaimerutils.ItemGroups.ItemGroupRegistry;
 import xyz.nasasupercomputer.worldclaimerutils.Items.ItemRegistry;
 
@@ -53,7 +54,7 @@ public class MainRegistry
         MinecraftForge.EVENT_BUS.register(this);
         modEventBus.addListener(ItemGroupRegistry::AddItemToTab);
 
-        context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        context.registerConfig(ModConfig.Type.COMMON, ForgeConfigs.SPEC);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
