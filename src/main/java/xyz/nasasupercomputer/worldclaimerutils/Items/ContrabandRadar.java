@@ -65,10 +65,10 @@ public class ContrabandRadar extends Item {
             	// Spill the Secrets
             	for (String i : checkedNames) {
             		if (hooliganNames.contains(i)) {
-            			pPlayer.sendSystemMessage(Component.literal(i + " -- " + countUsernameListEntries(hooliganNames, i) + " Has Contraband Stack(s) Found").withStyle(ChatFormatting.RED));
+            			pPlayer.sendSystemMessage(Component.literal(i + " -- " + countUsernameListEntries(hooliganNames, i) + " Has Contraband Stack(s)").withStyle(ChatFormatting.RED));
             		}
             		else {
-            			pPlayer.sendSystemMessage(Component.literal(i + " -- Has 0 Contraband Stacks Found").withStyle(ChatFormatting.GREEN));
+            			pPlayer.sendSystemMessage(Component.literal(i + " -- Has 0 Contraband Stacks").withStyle(ChatFormatting.GREEN));
             		}
             	}
             	
@@ -102,6 +102,6 @@ public class ContrabandRadar extends Item {
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-    	pTooltipComponents.add(Component.translatable("item.worldclaimers.contraband_radar.desc").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
+    	pTooltipComponents.add(Component.translatable("item.worldclaimerutils.contraband_radar.desc").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
     }
 }

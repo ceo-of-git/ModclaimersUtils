@@ -17,6 +17,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.event.TickEvent;
@@ -24,6 +25,7 @@ import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
@@ -35,15 +37,32 @@ import xyz.nasasupercomputer.worldclaimerutils.Configs.ForgeConfigs;
 @Mod.EventBusSubscriber(modid = MainRegistry.MODID)
 public class ServerEventHandler {
 
-	// Likely not the most efficient way of implementing this,
-	// might redo this later.
+	// When an item is picked up
 	@SubscribeEvent
 	public static void onItemPickup(EntityItemPickupEvent event) {
 		net.minecraft.world.entity.player.Player player = event.getEntity();
 		ItemStack itemStack = event.getItem().getItem();
 		
-		if (player != null) { 
+		if (player != null && ForgeConfigs.enablePickupBlocking) { 
 			if (MainRegistry.isItemBanned(player, itemStack.getItem())) {
+				event.setCanceled(true);
+				event.setResult(Result.DENY);
+				
+				if (ForgeConfigs.instantlyKillPlayer) {
+					player.kill(); // welp shouldn't have done that
+				}
+			}
+		}
+	}
+	
+
+	@SubscribeEvent
+	public static void blockBreakEvent(BlockEvent.BreakEvent event) {
+		net.minecraft.world.entity.player.Player player = event.getPlayer();
+		Item item = event.getState().getBlock().asItem();
+		
+		if (player != null && ForgeConfigs.enableBlockBreakBlocking) { 
+			if (MainRegistry.isItemBanned(player, item)) {
 				event.setCanceled(true);
 				event.setResult(Result.DENY);
 				
@@ -62,7 +81,7 @@ public class ServerEventHandler {
 	    ServerPlayer player = (ServerPlayer) event.getEntity();
 	    ItemStack itemStack = event.getItemStack();
 
-		if (player != null) { 
+		if (player != null && ForgeConfigs.enableRightclickBlocking) { 
 			if (MainRegistry.isItemBanned(player, itemStack.getItem())) {
 				event.setCanceled(true);
 				event.setResult(Result.DENY);
@@ -82,7 +101,7 @@ public class ServerEventHandler {
 
 	    ItemStack itemStack = event.getTo();
 
-		if (player != null) { 
+		if (player != null && ForgeConfigs.enableArmorEquipBlocking) { 
 			if (MainRegistry.isItemBanned(player, itemStack.getItem())) {
 				// event.setCanceled(true); This crashes :(
 				// event.setResult(Result.DENY);
@@ -112,7 +131,7 @@ public class ServerEventHandler {
 		ItemStack itemStack = event.getItemStack();
 		Block block = event.getLevel().getBlockState(event.getPos()).getBlock();
 		
-		if (player != null) { 
+		if (player != null && ForgeConfigs.enableBlockInteractionBlocking) { 
 			if (MainRegistry.isItemBanned(player, itemStack.getItem())) {
 				// Dont interact
 				event.setCanceled(true);

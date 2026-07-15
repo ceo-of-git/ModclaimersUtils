@@ -23,8 +23,13 @@ public class ForgeConfigs
     
 	public static boolean instantlyKillPlayer;
     private static final ForgeConfigSpec.BooleanValue KILL_PLAYER = BUILDER
-            .comment("Instantly kill a player that tries to interact with a banned mod (Joke Option)")
+            .comment("Instantly kill a player that tries to interact with a banned mod (Joke Option) (Untested) (Will probably crash your game)")
             .define("instantlyKillPlayer", false);
+    
+	public static boolean enableDisallowedTooltip;
+    private static final ForgeConfigSpec.BooleanValue ENABLED_DISALLOWED_TOOLTIP_DISPLAY = BUILDER
+            .comment("Whether or not there will be text below an item indicating that it is banned")
+            .define("enableDisallowedTooltip", true);
 
     public static List<? extends String> modBans;
     private static final ForgeConfigSpec.ConfigValue<List<? extends String>> MOD_BANS = BUILDER
@@ -38,6 +43,32 @@ public class ForgeConfigs
                             ),
                             o -> o instanceof String
                     );
+    
+	public static boolean enablePickupBlocking;
+    private static final ForgeConfigSpec.BooleanValue ENABLED_ITEM_PICKUP_BLOCKING = BUILDER
+            .comment("If a player is NOT allowed to pick up items from banned mods")
+            .define("enablePickupBlocking", true);
+    
+	public static boolean enableRightclickBlocking;
+    private static final ForgeConfigSpec.BooleanValue ENABLED_RIGHT_CLICK_BLOCKING = BUILDER
+            .comment("If a player is NOT allowed to right-click an item from a banned mod")
+            .define("enableRightclickBlocking", true);
+    
+	public static boolean enableArmorEquipBlocking;
+    private static final ForgeConfigSpec.BooleanValue ENABLED_ARMOR_EQUIP_BLOCKING = BUILDER
+            .comment("If a player is NOT allowed to wear armor from a banned mod")
+            .define("enableArmorEquipBlocking", true);
+    
+	public static boolean enableBlockBreakBlocking;
+    private static final ForgeConfigSpec.BooleanValue ENABLED_BLOCK_BREAK_BLOCKING = BUILDER
+            .comment("If a player is NOT allowed to break blocks from a banned mod")
+            .define("enableBlockBreakBlocking", false);
+    
+	public static boolean enableBlockInteractionBlocking;
+    private static final ForgeConfigSpec.BooleanValue ENABLED_BLOCK_INTERACT_BLOCKING = BUILDER
+            .comment("If a player is NOT allowed to interact (right-click) blocks from a banned mod")
+            .define("enableBlockInteractionBlocking", true);
+    
     // This must be last because this finalizes the Config.
     public static final ForgeConfigSpec SPEC = BUILDER.build();
 
@@ -53,6 +84,13 @@ public class ForgeConfigs
     	enableMod = ENABLED_MOD.get();
     	modBans = MOD_BANS.get();
     	instantlyKillPlayer = KILL_PLAYER.get();
+    	
+    	enableDisallowedTooltip = ENABLED_DISALLOWED_TOOLTIP_DISPLAY.get();
+    	enablePickupBlocking = ENABLED_ITEM_PICKUP_BLOCKING.get();
+    	enableRightclickBlocking = ENABLED_RIGHT_CLICK_BLOCKING.get();
+    	enableArmorEquipBlocking = ENABLED_ARMOR_EQUIP_BLOCKING.get();
+    	enableBlockBreakBlocking = ENABLED_BLOCK_BREAK_BLOCKING.get();
+    	enableBlockInteractionBlocking = ENABLED_BLOCK_INTERACT_BLOCKING.get();
     	
 //        magicNumber = MAGIC_NUMBER.get();
 //        magicNumberIntroduction = MAGIC_NUMBER_INTRODUCTION.get();

@@ -19,14 +19,13 @@ import xyz.nasasupercomputer.worldclaimerutils.Configs.ForgeConfigs;
 public class ClientEventHandler {
 	
 	// Hold on... this is... optimized?
-	// TODO: dont show that its disallowed to opped players, (who really cares tho, (me))
 	@SubscribeEvent
 	public static void drawTooltip(ItemTooltipEvent event) {
         ItemStack stack = event.getItemStack();
         List<Component> tooltipList = event.getToolTip();
         List<String> tooltipString = new ArrayList<String>();
         
-        if (ForgeConfigs.enableMod) {
+        if (ForgeConfigs.enableMod && ForgeConfigs.enableDisallowedTooltip) {
 			net.minecraft.world.entity.player.Player player = event.getEntity();
 			ItemStack item = event.getItemStack();
 			
