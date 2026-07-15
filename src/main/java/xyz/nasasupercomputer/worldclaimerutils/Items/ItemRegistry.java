@@ -12,7 +12,7 @@ public class ItemRegistry {
 
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MainRegistry.MODID);
 	
-	public static final RegistryObject<Item> TAB_ICON = ITEMS.register("tab_icon", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+	public static final RegistryObject<Item> CONTRABAND_RADAR = ITEMS.register("contraband_radar", () -> new ContrabandRadar(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
 	
 	public static void registerItems(IEventBus modEventBus) {
 		ITEMS.register(modEventBus);
