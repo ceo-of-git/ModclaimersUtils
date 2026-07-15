@@ -38,7 +38,6 @@ public class ForgeConfigs
                             ),
                             o -> o instanceof String
                     );
-    
     // This must be last because this finalizes the Config.
     public static final ForgeConfigSpec SPEC = BUILDER.build();
 

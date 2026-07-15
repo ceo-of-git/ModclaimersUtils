@@ -10,14 +10,18 @@ import net.minecraft.client.multiplayer.chat.LoggedChatMessage.Player;
 import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.OutgoingChatMessage;
 import net.minecraft.network.chat.PlayerChatMessage;
+import net.minecraft.server.TickTask;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.api.distmarker.Dist;
@@ -35,10 +39,11 @@ public class ServerEventHandler {
 	// might redo this later.
 	@SubscribeEvent
 	public static void onItemPickup(EntityItemPickupEvent event) {
+		net.minecraft.world.entity.player.Player player = event.getEntity();
+		ItemStack item = event.getItem().getItem();
 		
-		if (ForgeConfigs.enableMod) {
-			net.minecraft.world.entity.player.Player player = event.getEntity();
-			ItemStack item = event.getItem().getItem();
+		if (ForgeConfigs.enableMod && player != null) { 
+			boolean isOpped = player.hasPermissions(4);
 
 //			// For each player
 //			player.createCommandSourceStack().sendChatMessage(new OutgoingChatMessage.Player(testMSG), false, ChatType.bind(ChatType.CHAT, player));
@@ -53,7 +58,7 @@ public class ServerEventHandler {
 				String bannedUsername = fullList[0];
 				
 				// If the players name is mentioned
-				if (player.getName().getString().equalsIgnoreCase(bannedUsername)) {
+				if (player.getName().getString().equalsIgnoreCase(bannedUsername) || (bannedUsername.equalsIgnoreCase("all") && isOpped)) {
 
 					// Loop through all the modids and see if they match the 
 					for (int i = 0; i < fullList.length - 1; i++) { // -1 to account for the first element being the players username
@@ -72,6 +77,89 @@ public class ServerEventHandler {
 			}
 		}
 	}
+
+	// Whenever the player right-clicks with an item
+	@SubscribeEvent
+	public static void onRightClickItem(PlayerInteractEvent.RightClickItem event) {
+	    if (event.getLevel().isClientSide()) { return; }
+
+	    ServerPlayer player = (ServerPlayer) event.getEntity();
+	    ItemStack item = event.getItemStack();
+
+		if (ForgeConfigs.enableMod && player != null) { 
+			boolean isOpped = player.hasPermissions(4);
+
+			for (String index : ForgeConfigs.modBans) {
+				String[] fullList = index.split(",");
+				String bannedUsername = fullList[0];
+				
+				// If the players name is mentioned
+				if (player.getName().getString().equalsIgnoreCase(bannedUsername) || (bannedUsername.equalsIgnoreCase("all") && isOpped)) {
+
+					// Loop through all the modids and see if they match the 
+					for (int i = 0; i < fullList.length - 1; i++) { // -1 to account for the first element being the players username
+						
+						if (ForgeRegistries.ITEMS.getKey(item.getItem()).getNamespace().equalsIgnoreCase(fullList[i + 1])) {
+							// Cancel use
+							event.setCanceled(true);
+							event.setResult(Result.DENY);
+							
+							if (ForgeConfigs.instantlyKillPlayer) {
+								player.kill(); // welp shouldn't have done that
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	// Whenever the player switches Armor
+	@SubscribeEvent
+	public static void onEquipmentChange(LivingEquipmentChangeEvent event) {
+	    if (!(event.getEntity() instanceof ServerPlayer player)) { return; }
+	    if (event.getSlot().getType() != EquipmentSlot.Type.ARMOR) { return; }
+
+	    ItemStack item = event.getTo();
+
+		if (ForgeConfigs.enableMod && player != null) { 
+			boolean isOpped = player.hasPermissions(4);
+
+			for (String index : ForgeConfigs.modBans) {
+				String[] fullList = index.split(",");
+				String bannedUsername = fullList[0];
+				
+				// If the players name is mentioned
+				if (player.getName().getString().equalsIgnoreCase(bannedUsername) || (bannedUsername.equalsIgnoreCase("all") && isOpped)) {
+
+					// Loop through all the modids and see if they match the 
+					for (int i = 0; i < fullList.length - 1; i++) { // -1 to account for the first element being the players username
+						
+						if (ForgeRegistries.ITEMS.getKey(item.getItem()).getNamespace().equalsIgnoreCase(fullList[i + 1])) {
+							// Drop armor
+							// event.setCanceled(true); (This crashes :( )
+							// event.setResult(Result.DENY);
+							
+							// Drop armor piece after 1 tick
+							// Spent a while forum-dwelling for this one so it better run perfectly
+							player.server.tell(new TickTask(
+								    player.server.getTickCount() + 1,
+								    () -> {
+							            ItemStack currentArmor = player.getItemBySlot(event.getSlot());
+						                player.setItemSlot(event.getSlot(), ItemStack.EMPTY);
+						                player.spawnAtLocation(currentArmor.copy());
+								    }
+								));
+							
+							if (ForgeConfigs.instantlyKillPlayer) {
+								player.kill(); // welp shouldn't have done that
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 	
 	// Whenever the player right-clicks a block, air or item.
 	@SubscribeEvent
@@ -80,13 +168,14 @@ public class ServerEventHandler {
 		ItemStack item = event.getItemStack();
 		Block block = event.getLevel().getBlockState(event.getPos()).getBlock();
 		
-		if (ForgeConfigs.enableMod) { 
+		if (ForgeConfigs.enableMod && player != null) { 
+			boolean isOpped = player.hasPermissions(4);
 			for (String index : ForgeConfigs.modBans) {
 				String[] fullList = index.split(",");
 				String bannedUsername = fullList[0];
 				
 				// If the players name is mentioned
-				if (player.getName().getString().equalsIgnoreCase(bannedUsername)) {
+				if (player.getName().getString().equalsIgnoreCase(bannedUsername) || (bannedUsername.equalsIgnoreCase("all") && isOpped)) {
 	
 					// Loop through all the modids and see if they match the 
 					for (int i = 0; i < fullList.length - 1; i++) { // -1 to account for the first element being the players username

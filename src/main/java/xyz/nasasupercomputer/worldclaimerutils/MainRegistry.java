@@ -38,6 +38,8 @@ public class MainRegistry
 {
     public static final String MODID = "worldclaimerutils";
     private static final Logger LOGGER = LogUtils.getLogger();
+    
+    
 
     public MainRegistry(FMLJavaModLoadingContext context)
     {

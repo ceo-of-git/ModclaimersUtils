@@ -19,7 +19,7 @@ public class ItemGroupRegistry {
 	
     public static final RegistryObject<CreativeModeTab> WORLDCLAIMERS_TAB = CREATIVE_MODE_TABS.register("worldclaimers_tab", () -> CreativeModeTab.builder()
             .icon(() -> ItemRegistry.TAB_ICON.get().getDefaultInstance())
-            .title(Component.translatable("creativetab.worldclaimers"))
+            .title(Component.translatable("worldclaimers.creativetab"))
             .build());
 
     
