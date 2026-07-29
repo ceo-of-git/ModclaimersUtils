@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "worldclaimerutils:item/contraband_radar"
+		"layer0": "modclaimersutil:item/contraband_radar"
 	}
 }

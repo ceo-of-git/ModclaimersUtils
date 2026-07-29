@@ -2,9 +2,9 @@
 	"Modclaimers.creativetab": "Modclaimers Util",
 	"Modclaimers.disallowed": "Disallowed Mod Item",
 	
-	"item.worldclaimerutils.contraband_radar": "Contraband Radar",
-	"item.worldclaimerutils.contraband_radar.error": "ERROR: You must have Operator Permissions to use this item!",
-	"item.worldclaimerutils.contraband_radar.found": "Somebodies been caught with contraband!!!",
-	"item.worldclaimerutils.contraband_radar.nofound": "No one was detected having contraband on them.",
-	"item.worldclaimerutils.contraband_radar.desc": "A creative item that checks if anyone on \nthe current server is holding an item they aren't allowed to use."
+	"item.modclaimersutil.contraband_radar": "Contraband Radar",
+	"item.modclaimersutil.contraband_radar.error": "ERROR: You must have Operator Permissions to use this item!",
+	"item.modclaimersutil.contraband_radar.found": "Somebodies been caught with contraband!!!",
+	"item.modclaimersutil.contraband_radar.nofound": "No one was detected having contraband on them.",
+	"item.modclaimersutil.contraband_radar.desc": "A creative item that checks if anyone on \nthe current server is holding an item they aren't allowed to use."
 }

@@ -60,12 +60,12 @@ public class ContrabandRadar extends Item {
             	// Header
             	pPlayer.playSound(SoundEvents.NETHER_WOOD_BUTTON_CLICK_ON, 1.0F, 0.5F);
             	pPlayer.sendSystemMessage(Component.literal("=-------------------------------------------------=").withStyle(ChatFormatting.GRAY));
-            	pPlayer.sendSystemMessage(Component.translatable("item.worldclaimerutils.contraband_radar.found").withStyle(ChatFormatting.DARK_RED));
+            	pPlayer.sendSystemMessage(Component.translatable("item.modclaimersutil.contraband_radar.found").withStyle(ChatFormatting.DARK_RED));
             	
             	// Spill the Secrets
             	for (String i : checkedNames) {
             		if (hooliganNames.contains(i)) {
-            			pPlayer.sendSystemMessage(Component.literal(i + " -- " + countUsernameListEntries(hooliganNames, i) + " Has Contraband Stack(s)").withStyle(ChatFormatting.RED));
+            			pPlayer.sendSystemMessage(Component.literal(i + " -- Has " + countUsernameListEntries(hooliganNames, i) + " Contraband Stack(s)").withStyle(ChatFormatting.RED));
             		}
             		else {
             			pPlayer.sendSystemMessage(Component.literal(i + " -- Has 0 Contraband Stacks").withStyle(ChatFormatting.GREEN));
@@ -77,12 +77,12 @@ public class ContrabandRadar extends Item {
             }
             else {
             	pPlayer.playSound(SoundEvents.NETHER_WOOD_BUTTON_CLICK_ON, 1.0F, 2.0F);
-            	pPlayer.sendSystemMessage(Component.translatable("item.worldclaimerutils.contraband_radar.nofound").withStyle(ChatFormatting.GREEN));
+            	pPlayer.sendSystemMessage(Component.translatable("item.modclaimersutil.contraband_radar.nofound").withStyle(ChatFormatting.GREEN));
             }
 
         }
         else {
-        	pPlayer.sendSystemMessage(Component.translatable("item.worldclaimerutils.contraband_radar.error").withStyle(ChatFormatting.RED));
+        	pPlayer.sendSystemMessage(Component.translatable("item.modclaimersutil.contraband_radar.error").withStyle(ChatFormatting.RED));
         	pPlayer.playSound(SoundEvents.VILLAGER_NO, 1.0F, 0.8F);
         }
 
@@ -102,6 +102,6 @@ public class ContrabandRadar extends Item {
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-    	pTooltipComponents.add(Component.translatable("item.worldclaimerutils.contraband_radar.desc").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
+    	pTooltipComponents.add(Component.translatable("item.modclaimersutil.contraband_radar.desc").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
     }
 }
