@@ -1,16 +1,9 @@
-A basic yet configurable enough (hopefully) mod made to help with an idea for a minecraft smp I had...
-A world where only certain players have access to certain mods, and probably go and kill eachother with these mods
+Modclaimers Utils is a very simple but somewhat configurable mod about banning players from using specific mods.
+Built for Forge 1.20.1 (Currently) the mod is still meant to be used on more smaller & controlled Minecraft servers as I think there are many places where I can optimize for larger player counts.
 
-Planned Features:
-  - *Configurable feature to block certain player Usernames from interacting with certain mods.
-  - *Blocks will still be breakable (Configurable)
-  - *Items wont be able to be picked up
-  - *Blocks won't be able to be interacted with (R-Clicked)
-  - *Armor won't be wearable and will be dropped if so
-    - Weird bug with right-clicking the helmet and it becoming a Ghost Item !!
-  - Whitelist feature in config to allow items to be used by everyone
-  - *Disallowed items will display in a tooltip that they cannot be used.
-  - *Make 'all' ban items for all non-opped players.
+In the meantime however, do enjoy!
 
-
-*Feature has been implemented.
+HOW TO CONFIG THE MOD (Works with clients & servers):
+- Launch the game with the Mod Loaded atleast once, this will generate the default config.
+- Open the file named "modclaimersutils-common.toml" in the Config folder
+- Go wild
