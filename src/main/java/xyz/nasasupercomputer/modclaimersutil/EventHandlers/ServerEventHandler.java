@@ -1,4 +1,4 @@
-package xyz.nasasupercomputer.worldclaimerutils.EventHandlers;
+package xyz.nasasupercomputer.modclaimersutil.EventHandlers;
 
 import java.awt.Component;
 import java.util.ArrayList;
@@ -31,8 +31,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
-import xyz.nasasupercomputer.worldclaimerutils.MainRegistry;
-import xyz.nasasupercomputer.worldclaimerutils.Configs.ForgeConfigs;
+import xyz.nasasupercomputer.modclaimersutil.MainRegistry;
+import xyz.nasasupercomputer.modclaimersutil.Configs.ForgeConfigs;
 
 @Mod.EventBusSubscriber(modid = MainRegistry.MODID)
 public class ServerEventHandler {

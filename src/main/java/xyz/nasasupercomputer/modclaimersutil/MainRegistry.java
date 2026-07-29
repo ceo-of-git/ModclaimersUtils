@@ -1,4 +1,4 @@
-package xyz.nasasupercomputer.worldclaimerutils;
+package xyz.nasasupercomputer.modclaimersutil;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
@@ -30,9 +30,9 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import xyz.nasasupercomputer.worldclaimerutils.Configs.ForgeConfigs;
-import xyz.nasasupercomputer.worldclaimerutils.ItemGroups.ItemGroupRegistry;
-import xyz.nasasupercomputer.worldclaimerutils.Items.ItemRegistry;
+import xyz.nasasupercomputer.modclaimersutil.Configs.ForgeConfigs;
+import xyz.nasasupercomputer.modclaimersutil.ItemGroups.ItemGroupRegistry;
+import xyz.nasasupercomputer.modclaimersutil.Items.ItemRegistry;
 
 import org.slf4j.Logger;
 
@@ -40,9 +40,8 @@ import org.slf4j.Logger;
 @Mod(MainRegistry.MODID)
 public class MainRegistry
 {
-    public static final String MODID = "worldclaimerutils";
+    public static final String MODID = "modclaimersutil";
     private static final Logger LOGGER = LogUtils.getLogger();
-    
     
 
     public MainRegistry(FMLJavaModLoadingContext context)

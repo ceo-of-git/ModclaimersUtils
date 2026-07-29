@@ -1,4 +1,4 @@
-package xyz.nasasupercomputer.worldclaimerutils.Items;
+package xyz.nasasupercomputer.modclaimersutil.Items;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
@@ -6,7 +6,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import xyz.nasasupercomputer.worldclaimerutils.MainRegistry;
+import xyz.nasasupercomputer.modclaimersutil.MainRegistry;
 
 public class ItemRegistry {
 

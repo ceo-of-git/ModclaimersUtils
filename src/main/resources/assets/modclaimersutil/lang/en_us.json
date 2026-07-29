@@ -1,6 +1,6 @@
 {
-	"worldclaimers.creativetab": "Worldclaimers Util",
-	"worldclaimers.disallowed": "Disallowed Mod Item",
+	"Modclaimers.creativetab": "Modclaimers Util",
+	"Modclaimers.disallowed": "Disallowed Mod Item",
 	
 	"item.worldclaimerutils.contraband_radar": "Contraband Radar",
 	"item.worldclaimerutils.contraband_radar.error": "ERROR: You must have Operator Permissions to use this item!",

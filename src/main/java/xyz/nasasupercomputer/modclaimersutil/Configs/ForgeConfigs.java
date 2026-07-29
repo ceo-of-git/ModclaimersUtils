@@ -1,4 +1,4 @@
-package xyz.nasasupercomputer.worldclaimerutils.Configs;
+package xyz.nasasupercomputer.modclaimersutil.Configs;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,7 +9,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.minecraftforge.registries.ForgeRegistries;
-import xyz.nasasupercomputer.worldclaimerutils.MainRegistry;
+import xyz.nasasupercomputer.modclaimersutil.MainRegistry;
 
 @Mod.EventBusSubscriber(modid = MainRegistry.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ForgeConfigs

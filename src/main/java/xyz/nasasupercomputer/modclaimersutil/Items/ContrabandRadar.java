@@ -1,4 +1,4 @@
-package xyz.nasasupercomputer.worldclaimerutils.Items;
+package xyz.nasasupercomputer.modclaimersutil.Items;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +18,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import xyz.nasasupercomputer.worldclaimerutils.MainRegistry;
-import xyz.nasasupercomputer.worldclaimerutils.Configs.ForgeConfigs;
+import xyz.nasasupercomputer.modclaimersutil.MainRegistry;
+import xyz.nasasupercomputer.modclaimersutil.Configs.ForgeConfigs;
 
 public class ContrabandRadar extends Item {
 

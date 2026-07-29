@@ -1,4 +1,4 @@
-package xyz.nasasupercomputer.worldclaimerutils.EventHandlers;
+package xyz.nasasupercomputer.modclaimersutil.EventHandlers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +12,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
-import xyz.nasasupercomputer.worldclaimerutils.MainRegistry;
-import xyz.nasasupercomputer.worldclaimerutils.Configs.ForgeConfigs;
+import xyz.nasasupercomputer.modclaimersutil.MainRegistry;
+import xyz.nasasupercomputer.modclaimersutil.Configs.ForgeConfigs;
 
 @Mod.EventBusSubscriber(modid = MainRegistry.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class ClientEventHandler {
@@ -43,7 +43,7 @@ public class ClientEventHandler {
 						
 						if (ForgeRegistries.ITEMS.getKey(item.getItem()).getNamespace().equalsIgnoreCase(fullList[i + 1])) {
 							// Render
-							tooltipList.add(Component.translatable("worldclaimers.disallowed").withStyle(ChatFormatting.RED).withStyle(ChatFormatting.ITALIC));
+							tooltipList.add(Component.translatable("Modclaimers.disallowed").withStyle(ChatFormatting.RED).withStyle(ChatFormatting.ITALIC));
 						}
 					}
 				}

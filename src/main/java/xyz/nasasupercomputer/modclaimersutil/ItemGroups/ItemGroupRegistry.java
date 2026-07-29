@@ -1,8 +1,9 @@
-package xyz.nasasupercomputer.worldclaimerutils.ItemGroups;
+package xyz.nasasupercomputer.modclaimersutil.ItemGroups;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.Registries;
-import xyz.nasasupercomputer.worldclaimerutils.Items.ItemRegistry;
+import xyz.nasasupercomputer.modclaimersutil.MainRegistry;
+import xyz.nasasupercomputer.modclaimersutil.Items.ItemRegistry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -11,7 +12,6 @@ import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
-import xyz.nasasupercomputer.worldclaimerutils.MainRegistry;
 
 public class ItemGroupRegistry {
 
