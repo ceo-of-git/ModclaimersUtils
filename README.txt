@@ -7,3 +7,6 @@ HOW TO CONFIG THE MOD (Works with clients & servers):
 - Launch the game with the Mod Loaded atleast once, this will generate the default config.
 - Open the file named "modclaimersutils-common.toml" in the Config folder
 - Go wild
+
+Available on Curseforge: https://www.curseforge.com/minecraft/mc-mods/modclaimers-utils
+Waiting for Modrinth to approve...
